@@ -1,7 +1,7 @@
 import sys
 import random
 
-ip_address = raw_input("Enter valid IP address: ")
+'''ip_address = raw_input("Enter valid IP address: ")
 ip_octets = ip_address.split(".")
 
 if (len(ip_octets) == 4) and (1 <= int(ip_octets[0]) <= 223) and (int(ip_octets[0]) != 127) and (int(ip_octets[0]) != 169 or int(ip_octets[1]) != 254) and ((0 <= int(ip_octets[1]) <=255) and (0 <= int(ip_octets[2]) <=255) and (0 <= int(ip_octets[3]) <=255)):
@@ -9,7 +9,7 @@ if (len(ip_octets) == 4) and (1 <= int(ip_octets[0]) <= 223) and (int(ip_octets[
 
 
 else:
-    print "IP address is invalid"
+    print "IP address is invalid"'''
 
 subnet_mask = raw_input("Enter valid subnet mask: ")
 subnet_octets = subnet_mask.split(".")
@@ -39,3 +39,10 @@ for index in range(0, len(dec_mask)):
 
 complete_bin_mask = "".join(final_bin_mask)
 print complete_bin_mask
+
+# Calculate number of hosts per subnet
+
+no_of_zeros = complete_bin_mask.count("0")
+no_of_hosts = (2 ** (no_of_zeros) - 2)
+
+print no_of_hosts
