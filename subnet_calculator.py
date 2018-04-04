@@ -1,7 +1,7 @@
 import sys
 import random
 
-'''ip_address = raw_input("Enter valid IP address: ")
+ip_address = raw_input("Enter valid IP address: ")
 ip_octets = ip_address.split(".")
 
 if (len(ip_octets) == 4) and (1 <= int(ip_octets[0]) <= 223) and (int(ip_octets[0]) != 127) and (int(ip_octets[0]) != 169 or int(ip_octets[1]) != 254) and ((0 <= int(ip_octets[1]) <=255) and (0 <= int(ip_octets[2]) <=255) and (0 <= int(ip_octets[3]) <=255)):
@@ -9,7 +9,7 @@ if (len(ip_octets) == 4) and (1 <= int(ip_octets[0]) <= 223) and (int(ip_octets[
 
 
 else:
-    print "IP address is invalid"'''
+    print "IP address is invalid"
 
 subnet_mask = raw_input("Enter valid subnet mask: ")
 subnet_octets = subnet_mask.split(".")
@@ -57,3 +57,24 @@ for index in range(0, len(dec_mask)):
 final_wild_card_mask = ".".join(wild_card_mask)
 
 print final_wild_card_mask
+
+# Convert IP address in binary
+
+final_bin_ip = []
+
+for index in range(0, len(ip_octets)):
+    bin_ip = bin(int(ip_octets[index])).split("b")[1]
+
+    if len(bin_ip) == 8:
+        final_bin_ip.append(bin_ip)
+
+    elif len(bin_ip) < 8:
+        padded_ip = bin_ip.zfill(8)
+        final_bin_ip.append(padded_ip)
+
+complete_bin_ip = "".join(final_bin_ip)
+
+print "IP address in binary: " + complete_bin_ip
+
+
+
