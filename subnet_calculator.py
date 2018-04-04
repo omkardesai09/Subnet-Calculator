@@ -46,3 +46,14 @@ no_of_zeros = complete_bin_mask.count("0")
 no_of_hosts = (2 ** (no_of_zeros) - 2)
 
 print no_of_hosts
+
+# Calculate wild card mask
+wild_card_mask = []
+
+for index in range(0, len(dec_mask)):
+    wild_card_octet = 255 - int(dec_mask[index])
+    wild_card_mask.append(str(wild_card_octet))
+
+final_wild_card_mask = ".".join(wild_card_mask)
+
+print final_wild_card_mask
