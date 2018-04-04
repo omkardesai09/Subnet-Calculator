@@ -76,5 +76,28 @@ complete_bin_ip = "".join(final_bin_ip)
 
 print "IP address in binary: " + complete_bin_ip
 
+# Get Network IP address
+
+network_bin_octets = []
+no_of_ones = 32 - no_of_zeros
+
+network_addr = complete_bin_ip[0:no_of_ones] + "0" * no_of_zeros
+
+for i in range(0, len(network_addr), 8):
+    bin_octet = network_addr[i:i+8]
+    network_bin_octets.append(bin_octet)
+
+print network_bin_octets
+
+network_dec_octets = []
+for i in range(0, len(network_bin_octets)):
+    dec_ip = str(int(network_bin_octets[i],2))
+    network_dec_octets.append(dec_ip)
+
+final_network_addr = ".".join(network_dec_octets)
+
+print final_network_addr
+
+
 
 
