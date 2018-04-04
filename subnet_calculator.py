@@ -10,3 +10,14 @@ if (len(ip_octets) == 4) and (1 <= int(ip_octets[0]) <= 223) and (int(ip_octets[
 
 else:
     print "IP address is invalid"
+
+subnet_mask = raw_input("Enter valid subnet mask: ")
+subnet_octets = subnet_mask.split(".")
+
+possible_subnets = [255, 254, 252, 248, 240, 224, 192, 128, 0]
+
+if (len(subnet_octets) == 4) and (int(subnet_octets[0]) == 255) and ((int(subnet_octets[1]) in possible_subnets) and (int(subnet_octets[2]) in possible_subnets) and (int(subnet_octets[3]) in possible_subnets)) and (int(subnet_octets[0]) >= int(subnet_octets[1]) >= int(subnet_octets[2]) >= int(subnet_octets[3])):
+    print "Subnet mask is valid"
+
+else:
+    print "Subnet mask is invalid"
