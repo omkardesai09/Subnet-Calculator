@@ -21,3 +21,21 @@ if (len(subnet_octets) == 4) and (int(subnet_octets[0]) == 255) and ((int(subnet
 
 else:
     print "Subnet mask is invalid"
+
+# To convert subnet mask into binary
+
+final_bin_mask = []
+dec_mask = subnet_mask.split(".")
+
+for index in range(0, len(dec_mask)):
+    bin_mask = bin(int(dec_mask[index])).split('b')[1]
+
+    if len(bin_mask) == 8:
+        final_bin_mask.append(bin_mask)
+
+    elif len(bin_mask) < 8:
+        padded_octet = bin_mask.zfill(8)
+        final_bin_mask.append(padded_octet)
+
+complete_bin_mask = "".join(final_bin_mask)
+print complete_bin_mask
