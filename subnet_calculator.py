@@ -98,6 +98,27 @@ final_network_addr = ".".join(network_dec_octets)
 
 print final_network_addr
 
+# Get Broadcast IP address
+
+broadcast_bin_octets = []
+
+broadcast_addr = complete_bin_ip[0:no_of_ones] + "1" * no_of_zeros
+
+for i in range(0, len(broadcast_addr), 8):
+    b_bin_octet = broadcast_addr[i:i+8]
+    broadcast_bin_octets.append(b_bin_octet)
+
+print broadcast_bin_octets
+
+broadcast_dec_octets = []
+for i in range(0, len(broadcast_bin_octets)):
+    dec_broadcast_ip = str(int(broadcast_bin_octets[i],2))
+    broadcast_dec_octets.append(dec_broadcast_ip)
+
+final_broadcast_addr = ".".join(broadcast_dec_octets)
+
+print final_broadcast_addr
+
 
 
 
