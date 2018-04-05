@@ -38,14 +38,14 @@ for index in range(0, len(dec_mask)):
         final_bin_mask.append(padded_octet)
 
 complete_bin_mask = "".join(final_bin_mask)
-print complete_bin_mask
+#print complete_bin_mask
 
 # Calculate number of hosts per subnet
 
 no_of_zeros = complete_bin_mask.count("0")
 no_of_hosts = (2 ** (no_of_zeros) - 2)
 
-print no_of_hosts
+#print no_of_hosts
 
 # Calculate wild card mask
 wild_card_mask = []
@@ -56,7 +56,7 @@ for index in range(0, len(dec_mask)):
 
 final_wild_card_mask = ".".join(wild_card_mask)
 
-print final_wild_card_mask
+#print final_wild_card_mask
 
 # Convert IP address in binary
 
@@ -74,7 +74,7 @@ for index in range(0, len(ip_octets)):
 
 complete_bin_ip = "".join(final_bin_ip)
 
-print "IP address in binary: " + complete_bin_ip
+#print "IP address in binary: " + complete_bin_ip
 
 # Get Network IP address
 
@@ -87,7 +87,7 @@ for i in range(0, len(network_addr), 8):
     bin_octet = network_addr[i:i+8]
     network_bin_octets.append(bin_octet)
 
-print network_bin_octets
+#print network_bin_octets
 
 network_dec_octets = []
 for i in range(0, len(network_bin_octets)):
@@ -96,7 +96,7 @@ for i in range(0, len(network_bin_octets)):
 
 final_network_addr = ".".join(network_dec_octets)
 
-print final_network_addr
+#print final_network_addr
 
 # Get Broadcast IP address
 
@@ -108,7 +108,7 @@ for i in range(0, len(broadcast_addr), 8):
     b_bin_octet = broadcast_addr[i:i+8]
     broadcast_bin_octets.append(b_bin_octet)
 
-print broadcast_bin_octets
+#print broadcast_bin_octets
 
 broadcast_dec_octets = []
 for i in range(0, len(broadcast_bin_octets)):
@@ -117,8 +117,33 @@ for i in range(0, len(broadcast_bin_octets)):
 
 final_broadcast_addr = ".".join(broadcast_dec_octets)
 
-print final_broadcast_addr
+#print final_broadcast_addr
 
+# Print Final result
 
+print "IP address: " + ip_address
+print "Subnet mask: " + subnet_mask
+print "Wild card mask: " + final_wild_card_mask
+print "Network address: " + final_network_addr
+print "Broadcast address: " + final_broadcast_addr
+print "Number of hosts per subnet: " + str(no_of_hosts)
+
+# Generate random IP addresses in same subnet
+
+choice = raw_input("Do you want to generate random IP address in same subnet(y/n): ")
+
+random_ip_range = []
+if choice == 'y':
+
+    for obj_nw_index, obj_nw_value in enumerate(network_dec_octets):
+        for obj_br_index, obj_br_value in enumerate(broadcast_dec_octets):
+            if obj_nw_index == obj_br_index:
+                if obj_nw_value == obj_br_value:
+                    random_ip_range.append(obj_nw_value)
+
+                else:
+                    random_ip_range.append(str(random.randint(int(obj_nw_value), int(obj_br_value))))
+
+print "Random IP address is: " + str(".".join(random_ip_range))
 
 
